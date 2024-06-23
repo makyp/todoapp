@@ -11,10 +11,5 @@ import { CommonModule } from '@angular/common';
 
 })
 export class AppComponent {
-  welcome = 'Hola !!';
-  tasks = [
-    'Instalar en angular en CLI',
-    'Crear proyecto',
-    'Crear componentes',
-  ]
+  title = 'todo-app';
 }
