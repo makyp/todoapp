@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,13 +9,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './labs.component.css'
 })
 export class LabsComponent {
+  //Convertimos un arreglo en una señal
   welcome = 'Hola !!';
-  tasks = [
+  tasks = signal([
     'Instalar en angular en CLI',
     'Crear proyecto',
     'Crear componentes',
-  ]
-  name = 'Makyp';
+  ]);
+  name = signal('Makyp');
   age = 20;
   disabled = true;//Asignando una propiedad
   img = 'https://w3schools.com/howto/img_avatar.png';
@@ -31,7 +32,9 @@ export class LabsComponent {
   }
 
   changeHandler(event: Event){
-    console.log(event)
+    const input = event.target as HTMLInputElement;
+    const nerValue = input.value;
+    this.name.set(nerValue);//Es la mejor manera para que sea dinamico y reaccione
 
   }
 
