@@ -3,11 +3,13 @@
     <div class="container">
       <h1>Mi dia </h1>
       <p>Todas las tareas en un mismo lugar</p>
+      <!-- Se hace llamado al nuevo evento para recolocer que se esta agregando a la caja de texte e incluirla en el array con el change -->
       <input
         class="new-todo"
-        placeholder="Type new todo"
+        placeholder="Escribe tu nueva tarea"
         autofocus
         type="text"
+        (change) = "changeHandler($event)"
       />
     </div>
   </header>
@@ -15,6 +17,15 @@
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main">
       <ul class="todo-list">
+        <!-- index as i dice la pocisión -->
+        <li *ngFor ="let task of tasks(); index as i">
+          <div class="view">
+            <input class="toggle" type="checkbox" />
+            <label>{{ task.tittle }}</label>
+            <button class="destroy" (click)="deleteTask(i)"></button>
+          </div>
+          <input class="edit" value="Buy a unicorn" />
+        <!-- </li>
         <li class="completed">
           <div class="view">
             <input class="toggle" type="checkbox" checked />
@@ -38,7 +49,7 @@
             <button class="destroy"></button>
           </div>
           <input class="edit" value="Make dishes" />
-        </li>
+        </li> -->
       </ul>
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
