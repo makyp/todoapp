@@ -21,11 +21,11 @@ export class LabsComponent {
   disabled = true;//Asignando una propiedad
   img = 'https://w3schools.com/howto/img_avatar.png';
   //Creando objetos
-  person = {
-    name: 'Maira',
-    age: 15,
+  person = signal({
+    name: 'Makyp',
+    age: 20,
     avatar: 'https://w3schools.com/howto/img_avatar.png'
-  }
+  });
 
   clickHandler(){
     alert('Hola')
@@ -42,5 +42,27 @@ export class LabsComponent {
     const input = event.target as HTMLInputElement;
     console.log(input.value)
 
+  }
+
+  changeAge(event: Event){
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.person.update(prevState => {
+      return {
+        ...prevState,
+        age: parseInt(newValue,10)
+      }
+    } );
+  }
+
+  changeName(event: Event){
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.person.update(prevState => {
+      return {
+        ...prevState,
+        name: newValue
+      }
+    } );
   }
 }

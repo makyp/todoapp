@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Task } from './../../models/task.models'
+import { Task } from './../../models/task.models';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
   tasks = signal<Task[]>([
@@ -26,18 +26,18 @@ export class HomeComponent {
       id: Date.now(),
       tittle: 'Hacer ejercicio',
       completed: false,
-    }
+    },
   ]);
 
-  changeHandler(event:Event){
+  changeHandler(event: Event) {
     const input = event.target as HTMLInputElement;
     const newTask = input.value;
     this.addTask(newTask);
   }
 
-  addTask(tittle: string){
+  addTask(tittle: string) {
     const newTask = {
-      id : Date.now(),
+      id: Date.now(),
       tittle,
       completed: false,
     };
@@ -46,7 +46,22 @@ export class HomeComponent {
   }
 
   deleteTask(index: number) {
-    this.tasks.update((tasks) => tasks.filter((task, position) => position !== index));
+    this.tasks.update((tasks) =>
+      tasks.filter((task, position) => position !== index)
+    );
+  }
 
+  updateTask(index: number) {
+    this.tasks.update((task) => {
+      return task.map((task, position) => {
+        if (position === index) {
+          return {
+            ...task,
+            completed: !task.completed,
+          };
+        }
+        return task;
+      })
+    })
   }
 }

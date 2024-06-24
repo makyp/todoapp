@@ -16,7 +16,7 @@
   <!-- Se encierra en [] la propiedad para indicar que trae un valor dinamico -->
   <input type="text" [value]="name()">
   <button [disabled]="disabled">Click me</button>
-  <p>person: {{ person.name }}</p>
+  <p>person: {{ person().name }}</p>
   <hr>
   <!-- Para eventos se utilizan los () -->
   <button (click)="clickHandler()">Click me</button>
@@ -24,13 +24,13 @@
   <button (dblclick)="clickHandler()">Double me</button>
   <!-- Change desata los elementos de tipo input, los eventos que estan constridos desde angular se les antepone el signo pesos $ -->
   <p>(change)</p>
-  <input type="number" [value] = "person.age" (change)="changeHandler($event)">
+  <input type="number" [value] = "person().age" (change)="changeHandler($event)">
   <!-- Cuando una tecla se esta oprimiendo -->
   <p>(kydown)</p>
-  <input type="text" [value] = "person.name" (keydown)="keydownHandler($event)">
+  <input type="text" [value] = "person().name" (keydown)="keydownHandler($event)">
   <!-- Cuando se haga una combinación o se este oprimiendo una tecla puntual -->
   <p>(kydown especifico)</p>
-  <input type="text" [value] = "person.name" (keydown.shift.p)="clickHandler()">
+  <input type="text" [value] = "person().name" (keydown.shift.p)="clickHandler()">
   <p>Singnals</p>
   <input type="text" [value] = "name()" (change)="changeHandler($event)">
   <p>name : {{name()}}</p>
@@ -42,4 +42,34 @@
       {{ i }} {{ task }}
     </li>
   </ul>
+  <hr>
+  <div *ngIf="1 !== 1">
+    My contend
+  </div>
+  <div *ngIf="name() === 'Makyp'">
+    Soy Maira
+  </div>
+  <input type="number" [value] = "person().age" (change)="changeAge($event)">
+
+  <div *ngIf="person().name === 'Makyp' && person().age > 30; else elseBlock ">
+    <p>Hola</p>
+  </div>
+
+  <ng-template #elseBlock>
+    Soy Maira y soy menor de 30
+  </ng-template>
+  <hr>
+  <input type="text" [value] = "person().name" (change)="changeName($event)">
+
+  <div [ngSwitch]="person().name">
+    <p *ngSwitchCase="'Nicolas'"> Yo soy Nicolas</p>
+    <p *ngSwitchCase="'Maira'">Yo soy Maira</p>
+    <p *ngSwitchCase="'Makyp'">Yo soy Makyp</p>
+    <p *ngSwitchCase="'Angelica'">Yo soy Angelica</p>
+    <!-- En el caso que no aplique para ninguno -->
+    <p *ngSwitchDefault>No aplica en ningun caso</p>
+
+
+  </div>
+
 </div>
