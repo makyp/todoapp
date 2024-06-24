@@ -68,8 +68,18 @@
     <p *ngSwitchCase="'Angelica'">Yo soy Angelica</p>
     <!-- En el caso que no aplique para ninguno -->
     <p *ngSwitchDefault>No aplica en ningun caso</p>
-
-
   </div>
+  <hr>
+  <input type="color" [formControl] = "colorCtrl">
+  <p>color: {{colorCtrl.value}}</p>
+  <svg>
+    <g>
+      <rect x = "0" y="0" height = "100" width="100" [attr.fill]="colorCtrl.value"></rect>
+    </g>
+  </svg>
+  <hr>
+  <p>Modificando una propiedad directa de CSS con angular</p>
+  <input type="number" [formControl] = "widthCrtl">
+  <span class="box" [style.width.px]="widthCrtl.value"></span>
 
 </div>

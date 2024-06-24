@@ -9,18 +9,20 @@
         placeholder="Escribe tu nueva tarea"
         autofocus
         type="text"
-        (change) = "changeHandler($event)"
+        [formControl] = "newTaskCrtl"
+        (keydown.enter)= "changeHandler()"
       />
     </div>
   </header>
   <div class="container todoapp-wrapper">
     <!-- This section should be hidden by default and shown when there are todos -->
      <!-- Para debuguear el estado de nuestro array de tareas -->
-      <pre>
+      <!-- <pre>
         <code>
           {{ tasks() | json}}
         </code>
-      </pre>
+      </pre> -->
+
     <section class="main">
       <ul class="todo-list">
         <!-- index as i dice la pocisión -->

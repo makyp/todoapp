@@ -1,12 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Task } from './../../models/task.models';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -29,10 +30,28 @@ export class HomeComponent {
     },
   ]);
 
-  changeHandler(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const newTask = input.value;
-    this.addTask(newTask);
+  newTaskCrtl = new FormControl('',{
+    nonNullable: true, //No acepte valores nulos
+    validators: [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.pattern('')
+
+
+    ]
+  })
+
+  //Ya no se tiene que preguntar por el tarjet porque ya lo incluye el controlador
+  changeHandler() {
+    if (this.newTaskCrtl.valid){
+      const value = this.newTaskCrtl.value.trim();
+      if (value != ''){
+        this.addTask(value);
+        this.newTaskCrtl.setValue('');
+      }
+
+    }
+
   }
 
   addTask(tittle: string) {
