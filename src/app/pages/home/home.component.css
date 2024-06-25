@@ -214,7 +214,7 @@
 }
 
 .todo-list li.completed label {
-  color: #949494;
+  color: #9778fc;
   text-decoration: line-through;
 }
 
@@ -228,7 +228,7 @@
   height: 40px;
   margin: auto 0;
   font-size: 30px;
-  color: #949494;
+  color: #9778fc;
   transition: color 0.2s ease-out;
 }
 
@@ -296,11 +296,11 @@
 }
 
 .filters li a:hover {
-  border-color: #6e49fe;
+  border-color: #7757f5;
 }
 
 .filters li a.selected {
-  border-color: #4c33b1;
+  border-color: #7565b4;
 }
 
 .clear-completed,

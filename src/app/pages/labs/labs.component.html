@@ -81,5 +81,17 @@
   <p>Modificando una propiedad directa de CSS con angular</p>
   <input type="number" [formControl] = "widthCrtl">
   <span class="box" [style.width.px]="widthCrtl.value"></span>
+  <hr>
+  <!-- <p>Input dinamico pero se mueven los campos</p>
+  <p>
+    <input type="text" [formControl] = "nameCrtl" > <br/>
+    <samp class="message-error" *ngIf="nameCrtl.invalid && nameCrtl.touched">Nombre invalido</samp>
+  </p>
+  <hr> -->
+  <p>Input dinamico pero no se mueven los campos</p>
+  <p>
+    <input type="text" [formControl] = "nameCrtl" > <br/>
+    <samp class="message-error" [class.show]="nameCrtl.invalid && nameCrtl.touched">Nombre invalido</samp>
+  </p>
 
 </div>
